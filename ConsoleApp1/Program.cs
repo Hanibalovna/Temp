@@ -17,6 +17,89 @@ namespace ConsoleApp1
             Value = value;
         }
     }
+    class Stack
+    {
+        public Node First { get; private set; }
+        public Node Last { get; private set; }
+        public int Count { get; set; }
+
+        public void Clear()
+        {
+
+        }
+        public bool Contains(object obj)
+        {
+            if (First == null)
+                return false;
+            Node current = First;
+            do
+            {
+                if (current.Value.Equals(obj))
+                {
+                    return true;
+                }
+                current = First.Next;
+            }
+            while (current != null);
+            return false;
+        }
+        public object Peek()
+        {
+            if(First == null)
+            {
+                return null;
+            }
+            else
+            {
+                return First;
+            }
+        }
+        public object[] ToArray()
+        {
+
+            object[] nodeArr = new object[Count];
+            Node current = First;
+            for (int i = 0; i < nodeArr.Length - 1; i++)
+            {
+                nodeArr[i] = current.Value;
+                current = current.Next;
+            }
+            return nodeArr;
+        }
+        public void Push(object obj)
+        {
+            if (First == null)
+            {
+                First = Last = new Node(obj);
+                Count++;
+            }
+            else
+            {
+                Node node = new Node(obj);
+                First.Previous = node;
+                node.Previous = First;
+                First = node;
+                Count++;
+            }
+        }
+        public object Pop()
+        {
+            if (First == null)
+            {
+                return null;
+            }
+            else
+            {
+                Node current = First;
+                var prev = current.Previous;
+                var next = current.Next;
+                prev.Next = next;
+                next.Previous = prev;
+                Count--;
+                return current;
+            }
+        }
+    }
     class Qeue
     {
         public Node First { get; private set; }
@@ -55,6 +138,10 @@ namespace ConsoleApp1
                 Count--;
                 return current;
             }
+        }
+        public void Clear()
+        {
+
         }
         public bool Contains (object obj)
         {
