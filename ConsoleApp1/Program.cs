@@ -25,7 +25,8 @@ namespace ConsoleApp1
 
         public void Clear()
         {
-
+            First = Last = null;
+            Count = 0;
         }
         public bool Contains(object obj)
         {
@@ -141,7 +142,8 @@ namespace ConsoleApp1
         }
         public void Clear()
         {
-
+            First = Last = null;
+            Count = 0;
         }
         public bool Contains (object obj)
         {
